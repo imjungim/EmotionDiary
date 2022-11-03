@@ -9,7 +9,7 @@ import Diary from "./pages/Diary";
 
 const reducer = (state, action) => {
   let newState = [];
-  console.log("action", action);
+
   switch (action.type) {
     case "INIT": {
       return action.data;
@@ -76,14 +76,14 @@ const dummyData = [
 function App() {
   const [data, dispatch] = useReducer(reducer, dummyData);
   const dataId = useRef(0);
-  console.log(new Date().getTime())
+
   //create
   const onCreate = (date, content, emotion) => {
     dispatch({
       type: "CREATE",
       data: {
         id: dataId.current,
-        data: new Date(date).getTime(),
+        date: new Date(date).getTime(),
         content,
         emotion,
       },

@@ -38,9 +38,9 @@ const Home = () => {
   }, [diaryList, curDate]);
 
 
-  useEffect(() => {
-    console.log("data", data);
-  }, [data]);
+  // useEffect(() => {
+  //   console.log("data", data);
+  // }, [data]);
 
   //+월
   const increaseMonth = () => {
