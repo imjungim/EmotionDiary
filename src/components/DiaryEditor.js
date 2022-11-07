@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext, useEffect } from "react";
+import React, { useState, useRef, useContext, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { DiaryDispatchContext } from "../App";
 import { getStringDate } from "../util/data";
@@ -7,6 +7,8 @@ import EmotionItem from "./EmotionItem";
 import MyButton from "./MyButton";
 import MyHeader from "./MyHeader";
 
+//diary 수정 시 content값이 계속 변화하기때문에 자식컴포넌트인 EmotionItem도 계속 렌더링 -> 최적화
+
 const DiaryEditor = ({ isEdit, originData }) => {
   const contentRef = useRef();
   const [content, setContent] = useState("");
@@ -14,10 +16,11 @@ const DiaryEditor = ({ isEdit, originData }) => {
   const [date, setDate] = useState(getStringDate(new Date()));
 
   const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext);
-
-  const handleClickEmote = (emotion) => {
+  //React.memo 최적화를 위해 메모이제이션 useCallback
+  const handleClickEmote = useCallback((emotion) => {
     setEmotion(emotion);
-  };
+  }, []);
+
   const navigate = useNavigate();
   const handleSubmit = () => {
     if (content.length < 1) {

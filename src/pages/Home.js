@@ -3,7 +3,8 @@ import { DiaryStateContext } from "../App";
 import MyHeader from "./../components/MyHeader";
 import MyButton from "./../components/MyButton";
 import DiaryList from "../components/DiaryList";
-
+//최적화 
+//home렌더링 -> DiaryList -> ControlMenu 모두 렌더링됨
 const Home = () => {
   const diaryList = useContext(DiaryStateContext);
 

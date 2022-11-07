@@ -1,5 +1,5 @@
 import React from "react";
-
+//useCallback으로 묶어진 함수가 아니면 컴포넌트가 다시렌더링 -> onClick DiaryEditor
 const EmotionItem = ({
   emotion_id,
   emotion_img,
@@ -17,4 +17,4 @@ const EmotionItem = ({
   );
 };
 
-export default EmotionItem;
+export default React.memo(EmotionItem);

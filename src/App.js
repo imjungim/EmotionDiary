@@ -15,9 +15,9 @@ const reducer = (state, action) => {
       return action.data;
     }
     case "CREATE": {
-      const newItem = {
-        ...action.data,
-      };
+      const newItem ={
+        ...action.data
+      }
       newState = [newItem, ...state];
       break;
     }
@@ -64,14 +64,18 @@ function App() {
   useEffect(()=>{
     const localData = localStorage.getItem('diary');
     if(localData){
-      const diaryList = JSON.parse(localData).sort((a,b)=>parseInt(b.id)-parseInt(a.id));
-      dataId.current =parseInt(diaryList[0].id) + 1
+      const diaryList = JSON.parse(localData).sort((a,b)=> parseInt(b.id) - parseInt(a.id)); //내림차순 후 첫번째 아이템이 가장 아이디가 큰수
+     
+     if(diaryList.length >= 1){
+      dataId.current = parseInt(diaryList[0].id) + 1 //useRef의 값을 다시 0으로 다이어리 값이 이미 차있을경우 
+    
+      // console.log(diaryList)
+      // console.log(dataId)
 
-      //diaryList 를data 초기값으로 설정
-      dispatch({type : 'INIT', data : diaryList});
+      dispatch({type : "INIT", data : diaryList});
+     }
     }
   },[])
-
   const dataId = useRef(0);
 
   //create
@@ -97,7 +101,7 @@ function App() {
       type: "EDIT",
       data: {
         id: targetId,
-        data: new Date(date).getTime(),
+        date: new Date(date).getTime(),
         content,
         emotion,
       },

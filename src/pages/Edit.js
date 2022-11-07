@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { DiaryDispatchContext, DiaryStateContext } from "../App";
+import { DiaryStateContext } from "../App";
 import DiaryEditor from "../components/DiaryEditor";
 
 

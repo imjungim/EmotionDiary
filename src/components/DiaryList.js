@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DiaryItem from "./DiaryItem";
 import MyButton from "./MyButton";
@@ -15,7 +15,12 @@ const filterOptionList = [
 ];
 
 //정렬 컴포넌트
-const ControlMenu = ({ value, onChange, optionList }) => {
+//React.memo 컴포넌트를 함수인수로 전달하면 강화된 컴포넌트를 돌려주는 고차컴포넌트
+//전달받는 prop값이 바뀌지 않으면 렌더링이 일어나지 않는 최적화.
+const ControlMenu = React.memo(({ value, onChange, optionList }) => {
+  // useEffect(()=>{
+  //   console.log("control menu")
+  // })
   return (
     <select
       className="ControlMenu"
@@ -29,7 +34,7 @@ const ControlMenu = ({ value, onChange, optionList }) => {
       ))}
     </select>
   );
-};
+});
 
 const DiaryList = ({ diaryList }) => {
   const navigate = useNavigate();
