@@ -26,7 +26,10 @@ const Home = () => {
     const lastDay = new Date(
       curDate.getFullYear(),
       curDate.getMonth() + 1,
-      0
+      0,
+      23,
+      59,
+      59
     ).getTime();
 
     //현재 월의 firstDay~LastDay 데이터만 필터링
